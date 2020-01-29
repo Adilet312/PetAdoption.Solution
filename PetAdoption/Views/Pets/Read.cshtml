@@ -1,0 +1,55 @@
+
+@{
+  Layout = "_Layout";
+}
+
+@using PetAdoption.Models; 
+@model PetAdoption.Models.Pet;
+@* @model List<PetAdoption.Models.Pet>; *@
+
+<hr/>
+ <h3>Pet name: @Html.DisplayFor(model=>model.PetName) Date arrived: @Html.DisplayFor(model=>model.PetDateArrived)</h3>
+@* <h3>Pet name: @Html.DisplayFor(model => model.PetName), Date arrived: @Html.DisplayFor(model => model.PetDateArrived)</h3> *@
+
+ <ul>
+    @if(@Model.Customers.Count == 0)
+    {
+        <p>no customers found </p>
+    }
+    else
+    {
+        <h3>Customers that belong to Pet:</h3>
+         @foreach(var join in Model.Customers)
+        {
+             <h3><li>Customer: @join.Customer.CustName Phone number: @join.Customer.CustPhone, Customer Balance: @join.Customer.CustBalance</li></h3> 
+             @using (Html.BeginForm("DeleteCustomer","Pets"))
+             {
+                 @Html.Hidden("CustPetId",@join.CustomerPetId)
+                 <input type="submit" value="Delete">
+             }
+
+        }
+    }
+</ul>
+<hr /> 
+
+
+<h3>@Html.ActionLink("Back to list", "Index")</h3>
+<p>@Html.ActionLink("Add a Customer", "AddCustomer", new { id = Model.PetId })</p>
+<h3>@Html.ActionLink("Update Pet", "Update", new { updateID = Model.PetId })</h3>
+<h3>@Html.ActionLink("Delete Pet", "Delete", new { deleteID = Model.PetId })</h3>
+<h3>@Html.ActionLink("Add new Pet","Create","Pets")</h3>
+<h3>@Html.ActionLink("Back To Main Page ","Index","Home")</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+

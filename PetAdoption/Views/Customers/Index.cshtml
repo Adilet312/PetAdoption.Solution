@@ -1,0 +1,23 @@
+@{
+  Layout = "_Layout";
+}
+
+@using PetAdoption.Models;
+@model List<PetAdoption.Models.Customer>;
+<center>
+<h1>Customers</h1>
+
+@if (@Model.Count == 0)
+{
+  <h3>No customers have been added yet!</h3>
+} 
+
+@foreach (Customer customers in Model)
+{
+  <h3><li>@Html.ActionLink($"{customers.CustName}", "read", new { id = customers.CustomerId })</li></h3>
+}
+<hr/>
+<h3>@Html.ActionLink("Add new customer", "Create","Customers")</h3>
+
+<h3>@Html.ActionLink("Home", "Index", "Home")</h3>
+</center>

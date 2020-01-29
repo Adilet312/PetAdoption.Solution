@@ -1,0 +1,15 @@
+@{
+  Layout = "_Layout";
+}
+@model PetAdoption.Models.Pet
+
+<h4>Add a new pet</h4>
+@using (Html.BeginForm())
+{
+    <h3>Please enter pet name: @Html.TextBoxFor(model => model.PetName )</h3>
+    <h3>Please enter pet dateArrived: @Html.EditorFor(model => model.PetDateArrived, new { @type = "date" })</h3>
+    <h3>@Html.Label("Select Customer:") @Html.DropDownList("CustomerId","CustName")</h3>
+    <h3><input type="submit" value="Add new pet" /></h3>
+}
+<h3>@Html.ActionLink("Show all pets", "Index")</h3>
+<h3>@Html.ActionLink("Return Home Page", "Index","Home")</h3>

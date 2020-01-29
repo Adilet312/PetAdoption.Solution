@@ -1,0 +1,26 @@
+@{
+  Layout = "_Layout";
+}
+
+@using PetAdoption.Models;
+@model IEnumerable<PetAdoption.Models.Pet>
+
+<h1>Pets for @User.Identity.Name</h1>
+
+@if (Model.Any())
+{
+  <ul>
+    @foreach (Pet pet in Model)
+    {
+      <h3><li>@Html.ActionLink($"{pet.PetName}", "Read", new { readID = pet.PetId })</li></h3>
+    }
+  </ul>
+} 
+else
+{
+  <h3>No pets have been added yet!</h3>
+}
+
+<p>@Html.ActionLink("Add new item", "Create")</p>
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

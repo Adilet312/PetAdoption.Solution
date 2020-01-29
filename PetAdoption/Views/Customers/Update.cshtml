@@ -1,0 +1,24 @@
+@{
+  Layout = "_Layout";
+}
+
+@model PetAdoption.Models.Customer
+
+<h2>Update customer</h2>
+
+<h3>Update this customer: Name: @Html.DisplayFor(model => model.CustName), Phone number: @Html.DisplayFor(model => model.CustPhone),Balance: @Html.DisplayFor(model => model.CustBalance)</h3>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.CustomerId)
+
+    <h3>Please enter customer name:         @Html.TextBoxFor(model => model.CustName )</h3>
+    <h3>Please enter customer phone number: @Html.TextBoxFor(model => model.CustPhone)</h3>
+     <h3>Please enter balance:              @Html.TextBoxFor(model => model.CustBalance, new { type = "number", min = "0", step = "0.01" })</h3>
+   
+
+    <input type="submit" value="Update" />
+}
+<h3>@Html.ActionLink("Back to list", "Index")</h3>
+<h3>@Html.ActionLink("Update Customer", "Update", new { updateID = Model.CustomerId })</h3>
+<h3>@Html.ActionLink("Delete Customer", "Delete", new { deleteID = Model.CustomerId })</h3>

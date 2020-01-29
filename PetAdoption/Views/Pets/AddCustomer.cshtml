@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@model PetAdoption.Models.Pet
+
+<h2>Add a customer</h2>
+
+<h4>Add a customer to this task: @Html.DisplayFor(model => model.PetName)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.PetId)
+
+    <h3>@Html.Label("Select Customer:") @Html.DropDownList("CustomerId","Please Select Customer ")</h3>
+    <h3><input type="submit" value="Save" /></h3>
+
+    <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p>

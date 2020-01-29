@@ -1,0 +1,24 @@
+@{
+  Layout = "_Layout";
+}
+
+@model PetAdoption.Models.Pet
+
+<h2>Update pet</h2>
+
+<h4>Update this pet: @Html.DisplayFor(model => model.PetName) | @Html.DisplayFor(model => model.PetDateArrived)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.PetId)
+
+    <h3>Please enter pet name: @Html.TextBoxFor(model => model.PetName )</h3>
+    <h3>Please enter pet dateArrived: @Html.EditorFor(model => model.PetDateArrived, new { @type = "date" })</h3>
+
+    <h3>Please select customer: @Html.DropDownList("CustomerId","Please Select Customer ")</h3>
+
+    <input type="submit" value="Update" />
+}
+<h3>@Html.ActionLink("Back to list", "Index")</h3>
+<h3>@Html.ActionLink("Update Pet", "Update", new { updateID = Model.PetId })</h3>
+<h3>@Html.ActionLink("Delete Pet", "Delete", new { deleteID = Model.PetId })</h3>

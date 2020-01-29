@@ -1,0 +1,28 @@
+@{
+  Layout = "_Layout";
+}
+
+@model PetAdoption.Models.Customer;
+
+<h2>Customer Details</h2>
+<hr />
+ <h3>Customer's name: @Html.DisplayFor(model=>model.CustName) Phone number: @Html.DisplayFor(model=>model.CustPhone) Balance: @Html.DisplayFor(model=>model.CustBalance)</h3>
+<h3> Date adoption: </h3>
+@if(@Model.Pets.Count == 0)
+{
+  <h3>This customer does not own any pet </h3>
+}
+else
+{
+  <h4>Customer owns these pets:</h4>
+  <ul>
+  @foreach(var join in Model.Pets)
+  {
+    <h3><li>Pet name: @join.Pet.PetName Phone number: @join.Pet.PetDateArrived</li></h3>
+  }
+  </ul>
+}
+
+<h3>@Html.ActionLink("Back to customers", "Index")</h3>
+<h3>@Html.ActionLink("Update Customer", "Update", new { updateID = Model.CustomerId })</h3>
+<h3>@Html.ActionLink("Delete Customer", "Delete", new { deleteID = Model.CustomerId })</h3>
