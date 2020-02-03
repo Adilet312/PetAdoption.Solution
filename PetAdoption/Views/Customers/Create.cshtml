@@ -9,7 +9,7 @@
     <h3>Please enter name:         @Html.TextBoxFor(model => model.CustName )</h3>
     <h3>Please enter phone number: @Html.TextBoxFor(model => model.CustPhone)</h3>
     <h3>Please enter balance:      @Html.TextBoxFor(model => model.CustBalance, new { type = "number", min = "0", step = "0.01" })</h3>
-    @* <h3>@Html.Label("Select Pet:") @Html.DropDownList("PetId","Please Select Pet ")</h3> *@
+    <h3>@Html.Label("Select Pet:") @Html.DropDownList("PetId","Please Select Pet ")</h3>
     <h3><input type="submit" value="Add new customer" /></h3>
 }
 <h3>@Html.ActionLink("Show all customers", "Index")</h3>

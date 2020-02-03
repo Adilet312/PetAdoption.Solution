@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 namespace PetAdoption.Models
 {
-    public class PetAdoptionContextDB:IdentityDbContext<ApplicationUser>
+    public class PetAdoptionContextDB:DbContext
     {
         public virtual DbSet<Customer> Customers {get; set;}
         public DbSet<Pet> Pets {get;set;}

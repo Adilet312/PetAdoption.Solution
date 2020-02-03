@@ -17,8 +17,6 @@
 
     <h3>Please select customer: @Html.DropDownList("CustomerId","Please Select Customer ")</h3>
 
-    <input type="submit" value="Update" />
+    <h3><input type="submit" value="Update" /></h3>
 }
 <h3>@Html.ActionLink("Back to list", "Index")</h3>
-<h3>@Html.ActionLink("Update Pet", "Update", new { updateID = Model.PetId })</h3>
-<h3>@Html.ActionLink("Delete Pet", "Delete", new { deleteID = Model.PetId })</h3>

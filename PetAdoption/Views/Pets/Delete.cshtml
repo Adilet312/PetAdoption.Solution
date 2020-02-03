@@ -8,6 +8,6 @@
 <h3>Pet name: @Html.DisplayFor(model=>model.PetName) Date arrived: @Html.DisplayFor(model=>model.PetDateArrived)</h3>
 @using (Html.BeginForm())
 {
-    <input type="submit" value="Delete" />
+    <h3><input type="submit" value="Delete" /></h3>
 }
-@Html.ActionLink("Back to List", "Index")
+<h3>@Html.ActionLink("Back to List", "Index")</h3>

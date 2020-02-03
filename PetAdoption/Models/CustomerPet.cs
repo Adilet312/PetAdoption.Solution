@@ -8,7 +8,7 @@ namespace PetAdoption.Models
         public Customer Customer {get;set;}
         public int PetId {get;set;}
         public Pet Pet {get;set;}
-        public DateTime AdoptionDate {get;set;}
+        //public DateTime AdoptionDate {get;set;}
         
     }
 }

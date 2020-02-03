@@ -19,6 +19,26 @@ namespace PetAdoption.Controllers
             List<Customer> customers = _dataBase.Customers.ToList();
             return View(customers);
         }
+      
+        // Send Form for View or for browser.
+        [HttpGet]
+        public ActionResult Create()
+        {
+            ViewBag.PetId = new SelectList(_dataBase.Pets,"PetId","PetName");
+            return View();
+        }
+        //Accept data that comes from form that user submited.
+        [HttpPost]
+        public ActionResult Create(Customer new_customer,int PetId)
+        {
+            _dataBase.Customers.Add(new_customer);
+            if(PetId!=0)
+            {
+                _dataBase.CustomerPets.Add(new CustomerPet(){PetId=PetId,CustomerId=new_customer.CustomerId});
+            }
+            _dataBase.SaveChanges();
+            return RedirectToAction("Index");
+        }
         [HttpGet]
         public ActionResult Read(int id)
         {
@@ -28,41 +48,12 @@ namespace PetAdoption.Controllers
                                .FirstOrDefault(rowCustomers => rowCustomers.CustomerId==id);
                                return View(customerList); 
         }
-        // [HttpGet]
-        // public ActionResult Create()
-        // {
-        //     ViewBag.PetId = new SelectList(_dataBase.Pets,"PetId","Please Select Pet");
-        //     return View();
-        // }
-        // [HttpPost]
-        // public ActionResult Create(Customer new_customer, int PetId)
-        // {
-        //     _dataBase.Customers.Add(new_customer);
-        //     if(PetId!=0)
-        //     {
-        //         _dataBase.CustomerPets.Add(new CustomerPet(){PetId = PetId,CustomerId=new_customer.CustomerId});
-        //     }
-        //     _dataBase.SaveChanges();
-        //     return RedirectToAction("Index");
-        // }
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Update(int updateID)
         {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult Create(Customer new_customer)
-        {
-            System.Console.WriteLine(new_customer.CustPhone);
-            _dataBase.Customers.Add(new_customer);
-            _dataBase.SaveChanges();
-            return RedirectToAction("Index");
-        }
-        [HttpGet]
-        public ActionResult Update(int deleteID)
-        {
-            Customer deletingCustomer = _dataBase.Customers.FirstOrDefault(custs => custs.CustomerId==deleteID);
-            return View(deletingCustomer);
+            Customer deletingPet = _dataBase.Customers.FirstOrDefault(custs => custs.CustomerId==updateID);
+            ViewBag.PetId = new SelectList(_dataBase.Pets,"PetId","PetName");
+            return View(deletingPet);
         }
         [HttpPost]
         public ActionResult Update(Customer new_customer)
@@ -70,6 +61,21 @@ namespace PetAdoption.Controllers
             _dataBase.Entry(new_customer).State=EntityState.Modified;
             _dataBase.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+         [HttpGet]
+        public ActionResult Delete(int deleteID)
+        {
+            Customer deletingCustomer = _dataBase.Customers.FirstOrDefault(customers =>customers.CustomerId==deleteID);
+            return View(deletingCustomer);
+        }
+        [HttpPost,ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int deleteID)
+        {
+            Customer deletingCustomer = _dataBase.Customers.FirstOrDefault(customers =>customers.CustomerId==deleteID);
+            _dataBase.Remove(deletingCustomer);
+            _dataBase.SaveChanges();
+            return View("ConfirmedAboutDeletion");
         }
         
 

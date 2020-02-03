@@ -8,7 +8,7 @@ namespace PetAdoption.Models
         public string PetName {get;set;}
         public DateTime PetDateArrived {get;set;}
         public  ICollection<CustomerPet> Customers {get;}
-        public virtual ApplicationUser User { get; set; }
+        //public virtual ApplicationUser User { get; set; }
         public Pet()
         {
             this.Customers = new HashSet<CustomerPet>();

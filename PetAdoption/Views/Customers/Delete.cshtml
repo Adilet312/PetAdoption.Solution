@@ -1,0 +1,13 @@
+@{
+  Layout = "_Layout";
+}
+
+@model PetAdoption.Models.Customer
+
+<h2>Are you sure you want to delete this customer?</h2>
+<h3>Name: @Html.DisplayFor(model => model.CustName), Phone number: @Html.DisplayFor(model => model.CustPhone),Balance: @Html.DisplayFor(model => model.CustBalance)</h3>
+@using (Html.BeginForm())
+{
+    <h3><input type="submit" value="Delete" /></h3>
+}
+<h3>@Html.ActionLink("Back to List", "Index")</h3>

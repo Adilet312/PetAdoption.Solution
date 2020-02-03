@@ -3,24 +3,26 @@
 }
 
 @using PetAdoption.Models;
-@model IEnumerable<PetAdoption.Models.Pet>
+@model List<PetAdoption.Models.Pet>;
+<center>
+<h1>Pets</h1>
 
-<h1>Pets for @User.Identity.Name</h1>
 
-@if (Model.Any())
+@if (@Model.Count == 0)
 {
-  <ul>
-    @foreach (Pet pet in Model)
-    {
-      <h3><li>@Html.ActionLink($"{pet.PetName}", "Read", new { readID = pet.PetId })</li></h3>
-    }
-  </ul>
+  <h3>No pets have been added yet!</h3>
 } 
 else
 {
-  <h3>No pets have been added yet!</h3>
+    @foreach (Pet pets in Model)
+    {
+      <h3><li>@Html.ActionLink($"{pets.PetName}", "read", new { readID = pets.PetId })</li></h3>
+    }
+
 }
 
-<p>@Html.ActionLink("Add new item", "Create")</p>
+<hr/>
+<h3>@Html.ActionLink("Add new pet", "Create","Pets")</h3>
 
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
+<h3>@Html.ActionLink("Home", "Index", "Home")</h3>
+</center>
